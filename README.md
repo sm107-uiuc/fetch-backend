@@ -1,8 +1,3 @@
-<style scoped>
-table {
-  font-size: 15px
-}
-</style>
 
 ## Introduction
 
