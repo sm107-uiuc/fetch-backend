@@ -1,6 +1,5 @@
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Assumptions on data](#assumptions-on-data)
 - [Setup instructions](#setup-instructions)
