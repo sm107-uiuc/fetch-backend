@@ -3,6 +3,24 @@
 
 This repository contains the script for Fetch's  [backend task](https://docs.google.com/document/d/1Yn_xAonwLOINma3MquU5ag6KoNMkrH3uA-99pJvqaWs/edit)
 
+
+## Assumptions on data 
+
+1. The input transaction file for simplicity is **ASSUMED TO ONLY HAVE VALID DATA** and hence no validation checks have been placed for the input file.
+2. If the points of the payers in the input transaction files are negative, then we have assumed that those points are returned back to the payers at the given timestamp
+    1. The above assumptions means that if there are 3 transactions, 
+    "DANNON",1000,"2020-11-02T14:00:00Z"
+    "UNILEVER",200,"2020-10-31T11:00:00Z"
+    "DANNON",-200,"2020-10-31T15:00:00Z",
+    then the assumptions is that DANNON can contribute only 800 points to the user input and not 1000. 
+
+3. The negative points values have been subtracted from their respective payer groups.
+4. Only valid inputs are assumed for each payer. ie
+   1. No negative points can appear first ( as per timestamp ) as it is not possible to return points to the payer without them contributing first.
+   2. Sum of negative points is assumed to always be greater than the sum of positive points per payer.
+5. **Considering the timeframe, no unit tests have been written for this function. Ideally the above cases should have a unit test case associated with it.**
+
+
 ## Setup instructions
 
 This repository has been developed and tested for NodeJS version v18.12.1 and NPM version v9.2.0 **but it is likely to work on all latest LTS versions post Node 16 and stable NPM versions**. 
@@ -46,21 +64,7 @@ If the file is not present, the script throws an error
 ~ node fetch-backend.js 5000
 File not found in the current working directory
 ```
-
-## Assumptions on data 
-
-1. The input transaction file for simplicity is **ASSUMED TO ONLY HAVE VALID DATA** and hence no validation checks have been placed for the input file.
-2. If the points of the payers in the input transaction files are negative, then we have assumed that those points are returned back to the payers at the given timestamp
-    1. The above assumptions means that if there are 3 transactions, 
-    "DANNON",1000,"2020-11-02T14:00:00Z"
-    "UNILEVER",200,"2020-10-31T11:00:00Z"
-    "DANNON",-200,"2020-10-31T15:00:00Z",
-    then the assumptions is that DANNON can contribute only 800 points to the user input and not 1000. 
-
-3. The negative points values have been subtracted from their respective payer groups.
-4. Only valid inputs are assumed for each payer. ie
-   1. No negative points can appear first ( as per timestamp ) as it is not possible to return points to the payer without them contributing first.
-   2. Sum of negative points is assumed to always be greater than the sum of positive points per payer.
+ 
    
 
 
