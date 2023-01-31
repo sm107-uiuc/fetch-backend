@@ -47,7 +47,24 @@ If the file is not present, the script throws an error
 File not found in the current working directory
 ```
 
-### Usage :
+## Assumptions on data 
+
+1. The input transaction file for simplicity is **ASSUMED TO ONLY HAVE VALID DATA** and hence no validation checks have been placed for the input file.
+2. If the points of the payers in the input transaction files are negative, then we have assumed that those points are returned back to the payers at the given timestamp
+    1. The above assumptions means that if there are 3 transactions, 
+    "DANNON",1000,"2020-11-02T14:00:00Z"
+    "UNILEVER",200,"2020-10-31T11:00:00Z"
+    "DANNON",-200,"2020-10-31T15:00:00Z",
+    then the assumptions is that DANNON can contribute only 800 points to the user input and not 1000. 
+
+3. The negative points values have been subtracted from their respective payer groups.
+4. Only valid inputs are assumed for each payer. ie
+   1. No negative points can appear first ( as per timestamp ) as it is not possible to return points to the payer without them contributing first.
+   2. Sum of negative points is assumed to always be greater than the sum of positive points per payer.
+   
+
+
+## Usage :
 
 ```
 Usage: node fetch-backend.js <number of points to spend> [`true` to exit if insufficient points]
