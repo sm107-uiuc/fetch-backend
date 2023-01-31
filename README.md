@@ -1,3 +1,18 @@
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Introduction](#introduction)
+- [Assumptions on data](#assumptions-on-data)
+- [Setup instructions](#setup-instructions)
+  - [Node installation](#node-installation)
+- [Execution instructions](#execution-instructions)
+- [Usage :](#usage-)
+    - [***1. Success case***](#1-success-case)
+    - [***2. Case when points to be spent exceeds points supplied by payers***](#2-case-when-points-to-be-spent-exceeds-points-supplied-by-payers)
+    - [***3. Corner case***](#3-corner-case)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ## Introduction
 
