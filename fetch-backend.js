@@ -26,6 +26,7 @@ const process_transactions = async (bank, exit_if_insufficient) => {
             if (data.points >= 0)
                 payer_timestamps[data.payer].push(data);
             else {
+                // If the points are negative, merge them with the previous transactions
                 let points = data.points;
                 let current_index = payer_timestamps[data.payer].length - 1;
                 while (points < 0 && current_index >= 0) {
@@ -44,7 +45,8 @@ const process_transactions = async (bank, exit_if_insufficient) => {
                 }
             }
         }
-        // Merge the payer transactions and sort them by timestamp
+
+        // Merge all the payer transactions and sort them by timestamp again 
         let final_data = [];
         for (const payer in payer_timestamps) {
             for (const data of payer_timestamps[payer]) {
