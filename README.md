@@ -1,10 +1,12 @@
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Assumptions on data](#assumptions-on-data)
 - [Setup instructions](#setup-instructions)
   - [Node installation](#node-installation)
 - [Execution instructions](#execution-instructions)
+- [Testing :](#testing-)
 - [Usage :](#usage-)
     - [***1. Success case***](#1-success-case)
     - [***2. Case when points to be spent exceeds points supplied by payers***](#2-case-when-points-to-be-spent-exceeds-points-supplied-by-payers)
@@ -32,7 +34,7 @@ This repository contains the script for Fetch's  [backend task](https://docs.goo
 4. Only valid inputs are assumed for each payer. ie
    1. No negative points can appear first ( as per timestamp ) as it is not possible to return points to the payer without them contributing first.
    2. Sum of negative points is assumed to always be greater than the sum of positive points per payer.
-5. **Considering the timeframe, no unit tests have been written for this function. Ideally the above cases should have a unit test case associated with it.**
+5. **Considering the timeframe, not ALL POSSIBLE unit tests have been written for this function. Ideally the above cases should have a unit test case associated with it.**
 
 
 ## Setup instructions
@@ -66,7 +68,7 @@ Once they are installed, from the root directory of the folder run,
 ~ npm ci 
 ```
 
-This installs dependencies (lodash and csv2json)
+This installs dependencies (lodash and csv2json and jest)
 
 ## Execution instructions
 
@@ -79,7 +81,15 @@ If the file is not present, the script throws an error
 File not found in the current working directory
 ```
  
-   
+## Testing :
+
+Few unit test cases have been added to verify the correctness of the program. To run unit test cases, please run 
+
+```
+~ npm i -g jest
+~ npm run test
+```
+
 
 
 ## Usage :

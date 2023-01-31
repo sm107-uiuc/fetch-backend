@@ -5,11 +5,15 @@ const _ = require('lodash');
 const process = require('process');
 
 const process_transactions = async (bank, exit_if_insufficient) => {
-    bank = parseInt(bank);
     try {
+        bank = parseInt(bank);
+        if(isNaN(bank)) {
+            console.log('Invalid input');
+            return 1;
+        }
         if(!fs.existsSync(path.resolve(process.cwd(), 'transactions.csv'))) {
             console.log('File not found in the current working directory');
-            process.exit(1);
+            return 1;
         }
         // Read the csv file and convert it to json 
         const csv_data = fs.readFileSync(path.resolve(process.cwd(), 'transactions.csv'), 'utf8');
@@ -66,20 +70,27 @@ const process_transactions = async (bank, exit_if_insufficient) => {
         // Exit if insufficient points
         if (exit_if_insufficient && bank > 0) {
             console.log('Insufficient points');
-            process.exit(1);
+            return 1;
         }
         // Print the answer
         console.log(JSON.stringify(answer, null, 2));
     }
     catch(err) {
-        console.log(err);
+        console.error(err);
+        return 1;
+    }
+    return 0;
+}
+
+
+if(require.main === module) {
+    if(process.argv.length < 3) {
+        console.log('Please provide the number of points to spend');
+        console.log('Usage: node fetch-backend.js <number of points to spend> [`true` to exit if insufficient points]');
         process.exit(1);
     }
-    return;
+    process_transactions(process.argv[2], process.argv[3] == 'true' ? true : false); 
 }
-if(process.argv.length < 3) {
-    console.log('Please provide the number of points to spend');
-    console.log('Usage: node fetch-backend.js <number of points to spend> [`true` to exit if insufficient points]');
-    process.exit(1);
+else {
+    exports.process_transactions = process_transactions;
 }
-process_transactions(process.argv[2], process.argv[3] == 'true' ? true : false); 
