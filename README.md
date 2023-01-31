@@ -86,7 +86,7 @@ File not found in the current working directory
 Few unit test cases have been added to verify the correctness of the program. To run unit test cases, please run 
 
 ```
-~ npm i -g jest
+~ sudo npm i -g jest
 ~ npm run test
 ```
 
